@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CalvAI</title>
+  <link rel="shortcut icon" href="./1.png" type="image/x-icon">
+</head>
+
+<body>
+  <main>
+    <h1>Image Generator with CalvAI</h1>
+    <form>
+      <div class="image-picker">
+        <input type="file" name="file" id="fileInput" accept="image/">
+        <img id="preview" src="#" alt="Image preview" style="display:none; width: 200px; height: auto;">
+      </div>
+      <div class="prompt-box">
+        <label>
+          <input name="prompt" placeholder="Enter instructions here" type="text"
+            value="Input Text">
+        </label>
+        <button type="submit">Go</button>
+      </div>
+    </form>
+    <p class="output">(Results will appear here)</p>
+  </main>
+
+  <script type="module" src="/main.js"></script>
+  <script>
+    // Tampilkan Image
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const preview = document.getElementById('preview');
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+
+</html>
